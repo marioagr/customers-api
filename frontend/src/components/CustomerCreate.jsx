@@ -28,39 +28,66 @@ const CustomerCreate = () => {
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
-      .then(() => navigate("/customers"));
+      .then(() => navigate("/"));
   };
 
   return (
-    <div>
-      <h2>Create Customer</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label>First Name:</label>
-          <input {...register("first_name")} />
-          {errors.first_name && <p>{errors.first_name.message}</p>}
+    <div className="max-w-md mx-auto">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-6">Create Customer</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-6 rounded-lg shadow-md">
+        <div className="mb-4">
+          <label htmlFor="first_name" className="block text-gray-700 text-sm font-medium mb-2">First Name:</label>
+          <input
+            id="first_name"
+            {...register("first_name")}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          {errors.first_name && <p className="text-red-500 text-sm mt-1">{errors.first_name.message}</p>}
         </div>
-        <div>
-          <label>Last Name:</label>
-          <input {...register("last_name")} />
-          {errors.last_name && <p>{errors.last_name.message}</p>}
+        <div className="mb-4">
+          <label htmlFor="last_name" className="block text-gray-700 text-sm font-medium mb-2">Last Name:</label>
+          <input
+            id="last_name"
+            {...register("last_name")}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          {errors.last_name && <p className="text-red-500 text-sm mt-1">{errors.last_name.message}</p>}
         </div>
-        <div>
-          <label>Email:</label>
-          <input {...register("email")} />
-          {errors.email && <p>{errors.email.message}</p>}
+        <div className="mb-4">
+          <label htmlFor="email" className="block text-gray-700 text-sm font-medium mb-2">Email:</label>
+          <input
+            id="email"
+            {...register("email")}
+            type="email"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
         </div>
-        <div>
-          <label>Gender:</label>
-          <input {...register("gender")} />
-          {errors.gender && <p>{errors.gender.message}</p>}
+        <div className="mb-4">
+          <label htmlFor="gender" className="block text-gray-700 text-sm font-medium mb-2">Gender:</label>
+          <input
+            id="gender"
+            {...register("gender")}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          {errors.gender && <p className="text-red-500 text-sm mt-1">{errors.gender.message}</p>}
         </div>
-        <div>
-          <label>Image URL:</label>
-          <input {...register("image")} />
-          {errors.image && <p>{errors.image.message}</p>}
+        <div className="mb-6">
+          <label htmlFor="image" className="block text-gray-700 text-sm font-medium mb-2">Image URL:</label>
+          <input
+            id="image"
+            {...register("image")}
+            type="url"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          {errors.image && <p className="text-red-500 text-sm mt-1">{errors.image.message}</p>}
         </div>
-        <button type="submit">Create</button>
+        <button
+          type="submit"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-200"
+        >
+          Create
+        </button>
       </form>
     </div>
   );
