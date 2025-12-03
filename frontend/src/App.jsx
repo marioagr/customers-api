@@ -10,7 +10,6 @@ function App() {
       <div className="App">
         <h1>Customer Management</h1>
         <Routes>
-          <Route path="/customers" element={<CustomerList />} />
           <Route path="/" element={<CustomerList />} />
           <Route path="/customers/:id" element={<CustomerDetail />} />
           <Route path="/customers/create" element={<CustomerCreate />} />
