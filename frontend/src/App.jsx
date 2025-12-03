@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import CustomerList from "./components/CustomerList";
 import CustomerDetail from "./components/CustomerDetail";
 import CustomerCreate from "./components/CustomerCreate";
@@ -10,7 +10,7 @@ function App() {
       <div className="min-h-screen bg-gray-50">
         <header className="bg-blue-600 text-white shadow-lg">
           <div className="container mx-auto px-4 py-6">
-            <h1 className="text-3xl font-bold">Customer Management</h1>
+            <Link to={'/'} className="text-3xl font-bold">Customer Management</Link>
           </div>
         </header>
         <main className="container mx-auto px-4 py-8">

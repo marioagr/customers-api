@@ -23,24 +23,25 @@ const CustomerList = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {customers.map((customer) => (
-          <div key={customer.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-200">
-            <img
-              src={customer.image}
-              alt={`${customer.first_name} ${customer.last_name}`}
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-4">
-              <Link
-                to={`/customers/${customer.id}`}
-                className="text-lg font-semibold text-gray-800 hover:text-blue-600 transition duration-200"
-              >
+          <Link
+            to={`/customers/${customer.id}`}
+            key={customer.id}
+            className="text-lg font-semibold text-gray-800 hover:text-blue-600 transition duration-200"
+          >
+            <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-200">
+              <img
+                src={customer.image}
+                alt={`${customer.first_name} ${customer.last_name}`}
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-4">
                 {customer.first_name} {customer.last_name}
-              </Link>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
-    </div>
+    </div >
   );
 };
 
