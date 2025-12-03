@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const port = 3000;
 
@@ -91,39 +91,47 @@ let customers = [
 ];
 
 // Routes
-app.get('/customers', (req, res) => {
+app.get("/customers", (req, res) => {
   res.json(customers);
 });
 
-app.get('/customers/:id', (req, res) => {
+app.get("/customers/:id", (req, res) => {
   const id = parseInt(req.params.id);
-  const customer = customers.find(c => c.id === id);
+  const customer = customers.find((c) => c.id === id);
   if (customer) {
     res.json(customer);
   } else {
-    res.status(404).json({ message: 'Customer not found' });
+    res.status(404).json({ message: "Customer not found" });
   }
 });
 
-app.post('/customers', (req, res) => {
+app.post("/customers", (req, res) => {
   const { first_name, last_name, email, gender, image } = req.body;
   if (!first_name || !last_name || !email || !gender || !image) {
-    return res.status(400).json({ message: 'All fields are required' });
+    return res.status(400).json({ message: "All fields are required" });
   }
-  const newId = customers.length > 0 ? Math.max(...customers.map(c => c.id)) + 1 : 1;
-  const newCustomer = { id: newId, first_name, last_name, email, gender, image };
+  const newId =
+    customers.length > 0 ? Math.max(...customers.map((c) => c.id)) + 1 : 1;
+  const newCustomer = {
+    id: newId,
+    first_name,
+    last_name,
+    email,
+    gender,
+    image,
+  };
   customers.push(newCustomer);
   res.status(201).json(newCustomer);
 });
 
-app.delete('/customers/:id', (req, res) => {
+app.delete("/customers/:id", (req, res) => {
   const id = parseInt(req.params.id);
-  const index = customers.findIndex(c => c.id === id);
+  const index = customers.findIndex((c) => c.id === id);
   if (index !== -1) {
     customers.splice(index, 1);
-    res.json({ message: 'Customer deleted' });
+    res.json({ message: "Customer deleted" });
   } else {
-    res.status(404).json({ message: 'Customer not found' });
+    res.status(404).json({ message: "Customer not found" });
   }
 });
 
