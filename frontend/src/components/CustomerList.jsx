@@ -3,12 +3,17 @@ import { Link } from "react-router-dom";
 
 const CustomerList = () => {
   const [customers, setCustomers] = useState([]);
+  const [imageErrors, setImageErrors] = useState({});
 
   useEffect(() => {
     fetch("http://localhost:3000/customers")
       .then((response) => response.json())
       .then((data) => setCustomers(data));
   }, []);
+
+  const handleImageError = (customerId) => {
+    setImageErrors(prev => ({ ...prev, [customerId]: true }));
+  };
 
   return (
     <div>
@@ -29,11 +34,19 @@ const CustomerList = () => {
             className="text-lg font-semibold text-gray-800 hover:text-blue-600 transition duration-200"
           >
             <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-200">
-              <img
-                src={customer.image}
-                alt={`${customer.first_name} ${customer.last_name}`}
-                className="w-full h-48 object-cover"
-              />
+              {customer.image && !imageErrors[customer.id] ? (
+                <img
+                  src={customer.image}
+                  alt={`${customer.first_name} ${customer.last_name}`}
+                  className="w-full h-48 object-cover"
+                  loading="lazy"
+                  onError={() => handleImageError(customer.id)}
+                />
+              ) : (
+                <div className="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">
+                  No image available
+                </div>
+              )}
               <div className="p-4">
                 {customer.first_name} {customer.last_name}
               </div>

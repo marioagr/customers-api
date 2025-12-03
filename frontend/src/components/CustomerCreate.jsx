@@ -7,7 +7,7 @@ const schema = z.object({
   first_name: z.string().min(1, "First name is required"),
   last_name: z.string().min(1, "Last name is required"),
   email: z.string().email("Invalid email"),
-  gender: z.string().min(1, "Gender is required"),
+  gender: z.enum(["Male", "Female"], "Please select a valid gender"),
   image: z.string().url("Invalid URL"),
 });
 
@@ -65,11 +65,15 @@ const CustomerCreate = () => {
         </div>
         <div className="mb-4">
           <label htmlFor="gender" className="block text-gray-700 text-sm font-medium mb-2">Gender:</label>
-          <input
+          <select
             id="gender"
             {...register("gender")}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+          >
+            <option value="">Select gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
           {errors.gender && <p className="text-red-500 text-sm mt-1">{errors.gender.message}</p>}
         </div>
         <div className="mb-6">

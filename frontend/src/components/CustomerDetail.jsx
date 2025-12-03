@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 const CustomerDetail = () => {
   const { id } = useParams();
   const [customer, setCustomer] = useState(null);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:3000/customers/${id}`)
@@ -18,11 +19,19 @@ const CustomerDetail = () => {
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <div className="md:flex">
           <div className="md:w-1/3">
-            <img
-              src={customer.image}
-              alt={`${customer.first_name} ${customer.last_name}`}
-              className="w-full h-64 md:h-full object-cover"
-            />
+            {customer.image && !imageError ? (
+              <img
+                src={customer.image}
+                alt={`${customer.first_name} ${customer.last_name}`}
+                className="w-full h-64 md:h-full object-cover"
+                loading="lazy"
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <div className="w-full h-64 md:h-full bg-gray-200 flex items-center justify-center text-gray-500">
+                No image available
+              </div>
+            )}
           </div>
           <div className="md:w-2/3 p-6">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">Customer Detail</h2>
