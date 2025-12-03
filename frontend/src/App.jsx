@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import CustomerList from "./components/CustomerList";
 import CustomerDetail from "./components/CustomerDetail";
 import CustomerCreate from "./components/CustomerCreate";
@@ -7,9 +8,9 @@ import "./App.css";
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50">
-        <header className="bg-blue-600 text-white shadow-lg">
-          <div className="container mx-auto px-4 py-6">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <header className="bg-blue-600 dark:bg-blue-800 text-white shadow-lg">
+          <div className="container mx-auto px-4 py-6 flex justify-between items-center">
             <Link to={'/'} className="text-3xl font-bold">Customer Management</Link>
           </div>
         </header>

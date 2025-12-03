@@ -18,10 +18,10 @@ const CustomerList = () => {
   return (
     <div>
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-2xl font-semibold text-gray-800">Customer List</h2>
+        <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">Customer List</h2>
         <Link
           to="/customers/create"
-          className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
+          className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
         >
           Create New Customer
         </Link>
@@ -33,7 +33,7 @@ const CustomerList = () => {
             key={customer.id}
             className="text-lg font-semibold text-gray-800 hover:text-blue-600 transition duration-200"
           >
-            <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-200">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-200">
               {customer.image && !imageErrors[customer.id] ? (
                 <img
                   src={customer.image}
@@ -43,11 +43,11 @@ const CustomerList = () => {
                   onError={() => handleImageError(customer.id)}
                 />
               ) : (
-                <div className="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">
+                <div className="w-full h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400">
                   No image available
                 </div>
               )}
-              <div className="p-4">
+              <div className="p-4 text-gray-800 dark:text-gray-200">
                 {customer.first_name} {customer.last_name}
               </div>
             </div>

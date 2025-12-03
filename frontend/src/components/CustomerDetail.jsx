@@ -16,7 +16,7 @@ const CustomerDetail = () => {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
         <div className="md:flex">
           <div className="md:w-1/3">
             {customer.image && !imageError ? (
@@ -28,34 +28,34 @@ const CustomerDetail = () => {
                 onError={() => setImageError(true)}
               />
             ) : (
-              <div className="w-full h-64 md:h-full bg-gray-200 flex items-center justify-center text-gray-500">
+              <div className="w-full h-64 md:h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400">
                 No image available
               </div>
             )}
           </div>
           <div className="md:w-2/3 p-6">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Customer Detail</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Customer Detail</h2>
             <div className="space-y-3">
-              <p className="text-gray-600">
-                <span className="font-medium text-gray-800">ID:</span> {customer.id}
+              <p className="text-gray-600 dark:text-gray-400">
+                <span className="font-medium text-gray-800 dark:text-gray-200">ID:</span> {customer.id}
               </p>
-              <p className="text-gray-600">
-                <span className="font-medium text-gray-800">First Name:</span> {customer.first_name}
+              <p className="text-gray-600 dark:text-gray-400">
+                <span className="font-medium text-gray-800 dark:text-gray-200">First Name:</span> {customer.first_name}
               </p>
-              <p className="text-gray-600">
-                <span className="font-medium text-gray-800">Last Name:</span> {customer.last_name}
+              <p className="text-gray-600 dark:text-gray-400">
+                <span className="font-medium text-gray-800 dark:text-gray-200">Last Name:</span> {customer.last_name}
               </p>
-              <p className="text-gray-600">
-                <span className="font-medium text-gray-800">Email:</span> {customer.email}
+              <p className="text-gray-600 dark:text-gray-400">
+                <span className="font-medium text-gray-800 dark:text-gray-200">Email:</span> {customer.email}
               </p>
-              <p className="text-gray-600">
-                <span className="font-medium text-gray-800">Gender:</span> {customer.gender}
+              <p className="text-gray-600 dark:text-gray-400">
+                <span className="font-medium text-gray-800 dark:text-gray-200">Gender:</span> {customer.gender}
               </p>
             </div>
             <div className="mt-6">
               <Link
                 to="/"
-                className="inline-block bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
+                className="inline-block bg-gray-600 hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
               >
                 Back to List
               </Link>

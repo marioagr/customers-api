@@ -33,42 +33,42 @@ const CustomerCreate = () => {
 
   return (
     <div className="max-w-md mx-auto">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">Create Customer</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-6 rounded-lg shadow-md">
+      <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">Create Customer</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
         <div className="mb-4">
-          <label htmlFor="first_name" className="block text-gray-700 text-sm font-medium mb-2">First Name:</label>
+          <label htmlFor="first_name" className="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2">First Name:</label>
           <input
             id="first_name"
             {...register("first_name")}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           {errors.first_name && <p className="text-red-500 text-sm mt-1">{errors.first_name.message}</p>}
         </div>
         <div className="mb-4">
-          <label htmlFor="last_name" className="block text-gray-700 text-sm font-medium mb-2">Last Name:</label>
+          <label htmlFor="last_name" className="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2">Last Name:</label>
           <input
             id="last_name"
             {...register("last_name")}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           {errors.last_name && <p className="text-red-500 text-sm mt-1">{errors.last_name.message}</p>}
         </div>
         <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 text-sm font-medium mb-2">Email:</label>
+          <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2">Email:</label>
           <input
             id="email"
             {...register("email")}
             type="email"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
         </div>
         <div className="mb-4">
-          <label htmlFor="gender" className="block text-gray-700 text-sm font-medium mb-2">Gender:</label>
+          <label htmlFor="gender" className="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2">Gender:</label>
           <select
             id="gender"
             {...register("gender")}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">Select gender</option>
             <option value="Male">Male</option>
@@ -77,18 +77,18 @@ const CustomerCreate = () => {
           {errors.gender && <p className="text-red-500 text-sm mt-1">{errors.gender.message}</p>}
         </div>
         <div className="mb-6">
-          <label htmlFor="image" className="block text-gray-700 text-sm font-medium mb-2">Image URL:</label>
+          <label htmlFor="image" className="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2">Image URL:</label>
           <input
             id="image"
             {...register("image")}
             type="url"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           {errors.image && <p className="text-red-500 text-sm mt-1">{errors.image.message}</p>}
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-200"
+          className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-medium py-2 px-4 rounded-md transition duration-200"
         >
           Create
         </button>
