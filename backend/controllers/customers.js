@@ -1,24 +1,10 @@
-import customers from "../models/customers.js";
-import { CustomerInputSchema } from '../common/index.js';
+import { getAllCustomers as getAllCustomersService, createCustomer as createCustomerService, deleteCustomer as deleteCustomerService } from "../services/customers.js";
 
 const getAllCustomers = (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 3;
-  const startIndex = (page - 1) * limit;
-  const endIndex = startIndex + limit;
-  const paginatedCustomers = customers.slice(startIndex, endIndex);
-  const total = customers.length;
-  const totalPages = Math.ceil(total / limit);
-
-  res.json({
-    data: paginatedCustomers,
-    pagination: {
-      page,
-      limit,
-      total,
-      totalPages,
-    },
-  });
+  const result = getAllCustomersService(page, limit);
+  res.json(result);
 };
 
 const getCustomerById = (req, res) => {
@@ -26,27 +12,15 @@ const getCustomerById = (req, res) => {
 };
 
 const createCustomer = (req, res) => {
-  const validation = CustomerInputSchema.safeParse(req.body);
-  if (!validation.success) {
-    return res.status(400).json({ message: "Validation error", errors: validation.error.errors });
+  const result = createCustomerService(req.body);
+  if (!result.success) {
+    return res.status(400).json({ message: "Validation error", errors: result.errors });
   }
-  const { first_name, last_name, email, gender, image } = validation.data;
-  const newId =
-    customers.length > 0 ? Math.max(...customers.map((c) => c.id)) + 1 : 1;
-  const newCustomer = {
-    id: newId,
-    first_name,
-    last_name,
-    email,
-    gender,
-    image,
-  };
-  customers.push(newCustomer);
-  res.status(201).json(newCustomer);
+  res.status(201).json(result.data);
 };
 
 const deleteCustomer = (req, res) => {
-  customers.splice(req.customerIndex, 1);
+  deleteCustomerService(req.customerIndex);
   res.json({ message: "Customer deleted" });
 };
 
