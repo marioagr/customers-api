@@ -11,7 +11,7 @@ function App() {
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         <header className="bg-blue-600 dark:bg-blue-800 text-white shadow-lg">
           <div className="container mx-auto px-4 py-6 flex justify-between items-center">
-            <Link to={'/customers'} className="text-3xl font-bold">Customer Management</Link>
+            <Link to={'/'} className="text-3xl font-bold">Customer Management</Link>
           </div>
         </header>
         <main className="container mx-auto px-4 py-8">
