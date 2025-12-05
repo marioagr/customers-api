@@ -22,13 +22,7 @@ const getAllCustomers = (req, res) => {
 };
 
 const getCustomerById = (req, res) => {
-  const id = parseInt(req.params.id);
-  const customer = customers.find((c) => c.id === id);
-  if (customer) {
-    res.json(customer);
-  } else {
-    res.status(404).json({ message: "Customer not found" });
-  }
+  res.json(req.customer);
 };
 
 const createCustomer = (req, res) => {
@@ -52,14 +46,8 @@ const createCustomer = (req, res) => {
 };
 
 const deleteCustomer = (req, res) => {
-  const id = parseInt(req.params.id);
-  const index = customers.findIndex((c) => c.id === id);
-  if (index !== -1) {
-    customers.splice(index, 1);
-    res.json({ message: "Customer deleted" });
-  } else {
-    res.status(404).json({ message: "Customer not found" });
-  }
+  customers.splice(req.customerIndex, 1);
+  res.json({ message: "Customer deleted" });
 };
 
 export {
