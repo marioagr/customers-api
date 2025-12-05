@@ -1,15 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { useNavigate } from "react-router-dom";
-
-const schema = z.object({
-  first_name: z.string().min(1, "First name is required"),
-  last_name: z.string().min(1, "Last name is required"),
-  email: z.string().email("Invalid email"),
-  gender: z.enum(["Male", "Female"], "Please select a valid gender"),
-  image: z.string().url("Invalid URL"),
-});
+import { CustomerInputSchema } from "@common";
 
 const CustomerCreate = () => {
   const {
@@ -17,7 +9,7 @@ const CustomerCreate = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(CustomerInputSchema),
   });
   const navigate = useNavigate();
 

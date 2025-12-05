@@ -8,7 +8,7 @@ const CustomerList = () => {
   useEffect(() => {
     fetch("http://localhost:3000/customers")
       .then((response) => response.json())
-      .then((data) => setCustomers(data));
+      .then((data) => setCustomers(data.data));
   }, []);
 
   const handleImageError = (customerId) => {
