@@ -3,28 +3,59 @@ import { Link } from "react-router-dom";
 
 const CustomerList = () => {
   const [customers, setCustomers] = useState([]);
+  const [pagination, setPagination] = useState({});
   const [imageErrors, setImageErrors] = useState({});
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(3);
 
   useEffect(() => {
-    fetch("http://localhost:3000/customers")
+    fetch(`http://localhost:3000/customers?page=${page}&limit=${limit}`)
       .then((response) => response.json())
-      .then((data) => setCustomers(data.data));
-  }, []);
+      .then((data) => {
+        setCustomers(data.data);
+        setPagination(data.pagination);
+      });
+  }, [page, limit]);
 
   const handleImageError = (customerId) => {
     setImageErrors(prev => ({ ...prev, [customerId]: true }));
+  };
+
+  const handleLimitChange = (e) => {
+    setLimit(Number(e.target.value));
+    setPage(1); // Reset to first page
+  };
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= pagination.totalPages) {
+      setPage(newPage);
+    }
   };
 
   return (
     <div>
       <div className="flex justify-between items-center mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">Customer List</h2>
-        <Link
-          to="/customers/create"
-          className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
-        >
-          Create New Customer
-        </Link>
+        <div className="flex items-center space-x-4">
+          <label htmlFor="limit" className="text-gray-700 dark:text-gray-300">Items per page:</label>
+          <select
+            id="limit"
+            value={limit}
+            onChange={handleLimitChange}
+            className="px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value={3}>3</option>
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={100}>100</option>
+          </select>
+          <Link
+            to="/customers/create"
+            className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
+          >
+            Create New Customer
+          </Link>
+        </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {customers.map((customer) => (
@@ -54,6 +85,27 @@ const CustomerList = () => {
           </Link>
         ))}
       </div>
+      {pagination.totalPages > 1 && (
+        <div className="flex justify-center items-center mt-8 space-x-2">
+          <button
+            onClick={() => handlePageChange(page - 1)}
+            disabled={page === 1}
+            className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-200"
+          >
+            Previous
+          </button>
+          <span className="text-gray-700 dark:text-gray-300">
+            Page {pagination.page} of {pagination.totalPages}
+          </span>
+          <button
+            onClick={() => handlePageChange(page + 1)}
+            disabled={page === pagination.totalPages}
+            className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-200"
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div >
   );
 };
